@@ -107,15 +107,186 @@ pytest
 
 ---
 
+## Terminal Output — All Profiles
+
+### Profile 1: High-Energy Pop Fan
+
+```
+Loaded songs: 22
+
+============================================================
+  Profile 1: High-Energy Pop Fan
+============================================================
+
+  #1  Sunrise City — Neon Echo
+       Genre: pop | Mood: happy | Energy: 0.82
+       Score: 5.86
+       Why:   genre match (+2.0); mood match (+1.5); energy similarity (+0.97); valence similarity (+0.79); danceability similarity (+0.59)
+
+  #2  Shape of You — Ed Sheeran
+       Genre: pop | Mood: dancey | Energy: 0.85
+       Score: 4.32
+       Why:   genre match (+2.0); energy similarity (+1.00); valence similarity (+0.74); danceability similarity (+0.59)
+
+  #3  Gym Hero — Max Pulse
+       Genre: pop | Mood: intense | Energy: 0.93
+       Score: 4.21
+       Why:   genre match (+2.0); energy similarity (+0.92); valence similarity (+0.74); danceability similarity (+0.55)
+
+  #4  Rooftop Lights — Indigo Parade
+       Genre: indie pop | Mood: happy | Energy: 0.76
+       Score: 3.77
+       Why:   mood match (+1.5); energy similarity (+0.91); valence similarity (+0.77); danceability similarity (+0.59)
+
+  #5  Despacito — Luis Fonsi
+       Genre: latin pop | Mood: romantic | Energy: 0.82
+       Score: 2.27
+       Why:   energy similarity (+0.97); valence similarity (+0.75); danceability similarity (+0.55)
+```
+
+**Why did *Sunrise City* rank #1?** It is the only song in the catalog that matches on both genre (`pop`) AND mood (`happy`). That alone earns +3.5 points before any numerical features are compared — more than the maximum any energy/valence/danceability score can contribute. No other pop song in the catalog has `mood: happy`, so it is effectively unreachable by competitors.
+
+**Why does *Gym Hero* appear at #3 despite having `mood: intense`?** The +2.0 genre bonus for `pop` puts it ahead of *Rooftop Lights* (which matches `mood: happy` but not genre). This is the filter bubble in action — a pop song with the wrong mood still beats a non-pop song with the right mood.
+
+---
+
+### Profile 2: Chill Lofi Listener
+
+```
+============================================================
+  Profile 2: Chill Lofi Listener
+============================================================
+
+  #1  Library Rain — Paper Lanterns
+       Genre: lofi | Mood: chill | Energy: 0.35
+       Score: 6.35
+       Why:   genre match (+2.0); mood match (+1.5); energy similarity (+0.97); valence similarity (+0.78); danceability similarity (+0.60); acoustic match (+0.5)
+
+  #2  Midnight Coding — LoRoom
+       Genre: lofi | Mood: chill | Energy: 0.42
+       Score: 6.32
+       Why:   genre match (+2.0); mood match (+1.5); energy similarity (+0.96); valence similarity (+0.78); danceability similarity (+0.58); acoustic match (+0.5)
+
+  #3  Focus Flow — LoRoom
+       Genre: lofi | Mood: focused | Energy: 0.4
+       Score: 4.86
+       Why:   genre match (+2.0); energy similarity (+0.98); valence similarity (+0.79); danceability similarity (+0.59); acoustic match (+0.5)
+
+  #4  Spacewalk Thoughts — Orbit Bloom
+       Genre: ambient | Mood: chill | Energy: 0.28
+       Score: 4.14
+       Why:   mood match (+1.5); energy similarity (+0.90); valence similarity (+0.74); danceability similarity (+0.50); acoustic match (+0.5)
+
+  #5  Coffee Shop Stories — Slow Stereo
+       Genre: jazz | Mood: relaxed | Energy: 0.37
+       Score: 2.76
+       Why:   energy similarity (+0.99); valence similarity (+0.70); danceability similarity (+0.58); acoustic match (+0.5)
+```
+
+---
+
+### Profile 3: Deep Intense Rock Fan
+
+```
+============================================================
+  Profile 3: Deep Intense Rock Fan
+============================================================
+
+  #1  Storm Runner — Voltline
+       Genre: rock | Mood: intense | Energy: 0.91
+       Score: 5.76
+       Why:   genre match (+2.0); mood match (+1.5); energy similarity (+0.99); valence similarity (+0.74); danceability similarity (+0.53)
+
+  #2  Enter Sandman — Metallica
+       Genre: metal | Mood: intense | Energy: 0.97
+       Score: 3.73
+       Why:   mood match (+1.5); energy similarity (+0.95); valence similarity (+0.74); danceability similarity (+0.54)
+
+  #3  Lose Yourself — Eminem
+       Genre: hip hop | Mood: intense | Energy: 0.95
+       Score: 3.69
+       Why:   mood match (+1.5); energy similarity (+0.97); valence similarity (+0.74); danceability similarity (+0.48)
+
+  #4  Gym Hero — Max Pulse
+       Genre: pop | Mood: intense | Energy: 0.93
+       Score: 3.40
+       Why:   mood match (+1.5); energy similarity (+0.99); valence similarity (+0.50); danceability similarity (+0.40)
+
+  #5  Night Drive Loop — Neon Echo
+       Genre: synthwave | Mood: moody | Energy: 0.75
+       Score: 2.05
+       Why:   energy similarity (+0.83); valence similarity (+0.73); danceability similarity (+0.49)
+```
+
+**Surprise:** *Gym Hero* (pop, intense) appears at #4 for a rock fan because `mood: intense` earns +1.5 points regardless of genre. Mood acts as a cross-genre bridge. A pop song with the right intensity gets recommended to a rock fan, which could feel wrong but is mathematically defensible.
+
+---
+
+### Profile 4: Edge Case — Moody High-Energy (conflicted)
+
+```
+============================================================
+  Profile 4: Edge Case — Moody High-Energy (conflicted)
+============================================================
+
+  #1  Night Drive Loop — Neon Echo
+       Genre: synthwave | Mood: moody | Energy: 0.75
+       Score: 5.54
+       Why:   genre match (+2.0); mood match (+1.5); energy similarity (+0.85); valence similarity (+0.61); danceability similarity (+0.58)
+
+  #2  Bad Guy — Billie Eilish
+       Genre: alt pop | Mood: moody | Energy: 0.56
+       Score: 3.47
+       Why:   mood match (+1.5); energy similarity (+0.66); valence similarity (+0.74); danceability similarity (+0.57)
+
+  #3  Storm Runner — Voltline
+       Genre: rock | Mood: intense | Energy: 0.91
+       Score: 2.18
+       Why:   energy similarity (+0.99); valence similarity (+0.62); danceability similarity (+0.58)
+
+  #4  Enter Sandman — Metallica
+       Genre: metal | Mood: intense | Energy: 0.97
+       Score: 2.12
+       Why:   energy similarity (+0.93); valence similarity (+0.74); danceability similarity (+0.45)
+
+  #5  Blinding Lights — The Weeknd
+       Genre: synthpop | Mood: nostalgic | Energy: 0.88
+       Score: 1.98
+       Why:   energy similarity (+0.98); valence similarity (+0.43); danceability similarity (+0.57)
+```
+
+**Observation:** The catalog has no truly "high-energy moody" songs (energy > 0.85 AND mood = moody). *Night Drive Loop* wins as the best compromise — it matches both genre and mood but its energy of 0.75 falls 0.15 below the target of 0.90. The system handled the conflict gracefully rather than failing.
+
+---
+
 ## Experiments Tried
 
-### Experiment 1 — Weight shift: double energy, halve genre
+### Experiment 1 — Weight shift: genre halved (2.0→1.0), energy doubled (1.0→2.0)
 
-Changing genre weight from 2.0 → 1.0 and energy weight from 1.0 → 2.0 caused the high-energy pop profile to surface synthwave and EDM songs ahead of actual pop tracks. Songs like *One More Time* (EDM) and *Blinding Lights* (synthpop) moved up significantly. The genre label no longer acted as a hard gate, which produced more diverse but less genre-focused results.
+```
+Weight-Shift Experiment — Pop Fan (genre=1.0, energy=2.0)
+============================================================
+#1  Sunrise City — Neon Echo
+     Genre: pop | Mood: happy | Energy: 0.82  |  Score: 5.83
 
-### Experiment 2 — Feature removal: comment out mood scoring
+#2  Rooftop Lights — Indigo Parade
+     Genre: indie pop | Mood: happy | Energy: 0.76  |  Score: 4.68
 
-Removing the mood bonus (+1.5) caused the chill lofi profile to rank *Focus Flow* (#1) above both *Library Rain* and *Midnight Coding* — which share both genre AND mood with the user — because the energy gap was marginally tighter. This confirmed mood is a strong differentiator and should stay weighted.
+#3  Shape of You — Ed Sheeran
+     Genre: pop | Mood: dancey | Energy: 0.85  |  Score: 4.32
+
+#4  Gym Hero — Max Pulse
+     Genre: pop | Mood: intense | Energy: 0.93  |  Score: 4.13
+
+#5  Despacito — Luis Fonsi
+     Genre: latin pop | Mood: romantic | Energy: 0.82  |  Score: 3.24
+```
+
+Key change: *Rooftop Lights* (indie pop, happy) jumped from #4 to #2, displacing *Shape of You*. With a weaker genre gate, "indie pop" no longer loses to "pop" by default — the mood match (+1.5) and tight energy proximity pushed it ahead. The results became more genre-diverse but the top-1 stayed the same because *Sunrise City* still won on mood + energy combined.
+
+### Experiment 2 — Feature removal: mood scoring commented out
+
+Without the +1.5 mood bonus, the chill lofi profile ranked *Focus Flow* (#1) above *Library Rain* and *Midnight Coding* — which share both genre AND mood with the user — because *Focus Flow*'s energy (0.40) was marginally closer to the target (0.38). A difference of 0.02 in energy gap decided first place. This confirmed mood is a crucial differentiator: removing it makes the system sensitive to tiny numerical differences that don't reflect real listening preferences.
 
 ### Experiment 3 — Edge case: moody + high energy (conflicted profile)
 
